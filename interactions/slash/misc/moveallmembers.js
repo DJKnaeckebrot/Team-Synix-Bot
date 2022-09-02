@@ -37,6 +37,8 @@ module.exports = {
 		 */
 		const helpEmbed = new EmbedBuilder().setColor("Random");
 
+		if (!interaction.member.roles.cache.some(role => role.name === 'steam')) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });
+
         // if (!interaction.member.permissions.has("MANAGE_CHANNELS")) return interaction.reply('Not allowed to manage channels');
 
         const targetChannel1 = interaction.options.getChannel('channel1');
