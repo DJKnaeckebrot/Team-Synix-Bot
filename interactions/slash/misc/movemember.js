@@ -35,13 +35,15 @@ module.exports = {
 		 */
 		const helpEmbed = new EmbedBuilder().setColor("Random");
 
-        if (!interaction.member.permissions.has("MANAGE_CHANNELS")) return interaction.reply('Not allowed to manage channels');
+        if (!interaction.member.roles.cache.has('1014675330730033162')) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });
+
+		if (!interaction.member.roles.cache.has('875829974320439296')) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });
 
         const member = interaction.options.getMember('member');
 
-        if (!member.voice.channel) return interaction.reply({ content: 'The mentioned member is not in a voice channel!', ephemeral: true });
+        // if (!member.voice.channel) return interaction.reply({ content: 'The mentioned member is not in a voice channel!', ephemeral: true });
 
-        if (!interaction.member.voice.channel) return interaction.reply({ content: 'Please join a voice channel!', ephemeral: true });
+        // if (!interaction.member.voice.channel) return interaction.reply({ content: 'Please join a voice channel!', ephemeral: true });
 
         member.voice.setChannel(interaction.member.voice.channel);
         interaction.reply({ content: 'User has been moved!', ephemeral: true });
