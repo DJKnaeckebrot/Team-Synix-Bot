@@ -7,7 +7,7 @@
 
 // Deconstructed the constants we need in this file.
 
-const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
+const { EmbedBuilder, SlashCommandBuilder, PermissionsBitField } = require("discord.js");
 
 /**
  * @type {import('../../../typings').SlashInteractionCommand}
@@ -35,9 +35,9 @@ module.exports = {
 		 */
 		const helpEmbed = new EmbedBuilder().setColor("Random");
 
-        if (!interaction.member.roles.cache.has('1014675330730033162')) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });
+        //if (!interaction.member.roles.cache.has('1014675330730033162') || !interaction.member.roles.cache.has('1004207195866546376')) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });
 
-		if (!interaction.member.roles.cache.has('875829974320439296')) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });
+		if (!interaction.member.permissions.has(PermissionsBitField.Flags.MoveMembers)) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });
 
         const member = interaction.options.getMember('member');
 
