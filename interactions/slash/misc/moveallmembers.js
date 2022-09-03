@@ -7,7 +7,7 @@
 
 // Deconstructed the constants we need in this file.
 
-const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
+const { EmbedBuilder, SlashCommandBuilder, PermissionsBitField } = require("discord.js");
 
 /**
  * @type {import('../../../typings').SlashInteractionCommand}
@@ -37,9 +37,7 @@ module.exports = {
 		 */
 		const helpEmbed = new EmbedBuilder().setColor("Random");
 
-		if (!interaction.member.roles.cache.has('875829974320439296')) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });
-
-		if (!interaction.member.roles.cache.has('956646982871568455')) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });
+		// if (!interaction.member.permissions.has(PermissionsBitField.Flags.MoveMembers)) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });
 
         // if (!interaction.member.permissions.has("MANAGE_CHANNELS")) return interaction.reply('Not allowed to manage channels');
 
