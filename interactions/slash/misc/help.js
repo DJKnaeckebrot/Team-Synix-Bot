@@ -7,7 +7,7 @@
 
 // Deconstructed the constants we need in this file.
 
-const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
+const { EmbedBuilder, SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 
 /**
  * @type {import('../../../typings').SlashInteractionCommand}
@@ -72,10 +72,24 @@ module.exports = {
 				);
 		}
 
+		const buttons = new ActionRowBuilder()
+			.addComponents(
+				new ButtonBuilder()
+				.setLabel('Webseite')
+				.setStyle(ButtonStyle.Link)
+				.setURL('https://teamsynix.com'),
+			)
+			.addComponents(
+				new ButtonBuilder()
+				.setLabel('Cloud')
+				.setStyle(ButtonStyle.Link)
+				.setURL('https://cloud.teamsynix.com'),
+			);
+
 		// Replies to the interaction!
 
 		await interaction.reply({
-			embeds: [helpEmbed],
+			embeds: [helpEmbed], components: [buttons]
 		});
 	},
 };
