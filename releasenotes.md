@@ -1,4 +1,4 @@
-## Synix Discord Bot v1.0.0
+## Synix Discord Bot v1.0.1
 
 ### Commands 
 
@@ -9,3 +9,4 @@ help | /help [parmeters]
 moveallmembers | /moveallmembers [parmeters] ❌ (currently broken)
 movemember | /movemeber [parmeters]
 say | /say [parmeters]
+closetraining | /closetraining
