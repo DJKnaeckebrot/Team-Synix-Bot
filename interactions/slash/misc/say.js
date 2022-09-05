@@ -8,7 +8,6 @@
 // Deconstructed the constants we need in this file.
 
 const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
-const { options } = require("./clip");
 
 /**
  * @type {import('../../../typings').SlashInteractionCommand}
