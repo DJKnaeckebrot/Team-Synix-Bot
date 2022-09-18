@@ -267,6 +267,11 @@ const commandJsonData = [
 			{ body: commandJsonData }
 		);
 
+		await rest.put(
+			Routes.applicationCommands(client_id),
+			{ body: commandJsonData },
+		);
+
 		console.log("Successfully reloaded application (/) commands.");
 	} catch (error) {
 		console.error(error);
