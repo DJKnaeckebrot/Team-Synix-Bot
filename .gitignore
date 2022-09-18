@@ -2,6 +2,8 @@
 /config.json
 .vscode/
 .node-version
+commands/
+interactions/
 
 # Logs
 logs
