@@ -254,7 +254,7 @@ const commandJsonData = [
 			 * 2. Please comment the below (uncommented) line (for guild commands).
 			 */
 
-			Routes.applicationGuildCommands(client_id, test_guild_id),
+			Routes.applicationCommands(client_id),
 
 			/**
 			 * Good advice for global commands, you need to execute them only once to update
@@ -265,11 +265,6 @@ const commandJsonData = [
 			// Routes.applicationCommands(client_id)
 
 			{ body: commandJsonData }
-		);
-
-		await rest.put(
-			Routes.applicationCommands(client_id),
-			{ body: commandJsonData },
 		);
 
 		console.log("Successfully reloaded application (/) commands.");
