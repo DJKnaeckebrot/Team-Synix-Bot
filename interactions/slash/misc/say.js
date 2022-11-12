@@ -30,7 +30,7 @@ module.exports = {
 
     const closeEmbed = new EmbedBuilder()
 			.setColor(0x0085c1)
-			.setFooter({ text: 'Made with 💙 for Team Synix by .zen'})
+			.setFooter({ text: 'Made with ❤️ for Team Synix by .zeen'})
 			.setTitle(title)
 			.setAuthor({ name: 'Team Synix Mangement Team' })
 			.setDescription(text)
