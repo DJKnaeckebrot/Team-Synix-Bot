@@ -15,6 +15,6 @@ module.exports = {
 	 */
 	execute(client) {
 		console.log(`Ready! Logged in as ${client.user.tag}`);
-		client.user.setPresence({ activities: [{ name: '/help | teamsynix.com' }], status: 'online' });
+		client.user.setPresence({ activities: [{ name: '/help | teamsynix.com v1.0.4' }], status: 'online' });
 	},
 };
