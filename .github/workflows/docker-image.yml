@@ -35,6 +35,9 @@ jobs:
 
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+        
+      - name: Test Var
+        run: print(os.getenv('TOKEN'))
 
       - name: Log in to registry
         # This is where you will update the personal access token to GITHUB_TOKEN
