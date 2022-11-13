@@ -13,8 +13,13 @@ module.exports = {
 	 * @description Executes when client is ready (bot initialization).
 	 * @param {import('../typings').Client} client Main Application Client.
 	 */
+	
 	execute(client) {
 		console.log(`Ready! Logged in as ${client.user.tag}`);
-		client.user.setPresence({ activities: [{ name: '/help | teamsynix.com v1.0.4' }], status: 'online' });
+
+		var pjson = require('../package.json');
+		const version = pjson.version;
+
+		client.user.setPresence({ activities: [{ name: `/help | teamsynix.com ${ version }` }], status: 'online' });
 	},
 };
