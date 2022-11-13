@@ -16,7 +16,11 @@ on:
 
 env:
   IMAGE_NAME: synix_bot
-
+  TOKEN: ${{ secrets.TOKEN }}
+  OWNER: ${{ secrets.OWNER }}
+  CLIENT_ID: ${{ secrets.CLIENT_ID }}
+  TEST_GUILD_ID: ${{ secrets.TEST_GUILD_ID }}
+  
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
@@ -30,7 +34,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build image
-        run: docker build --build-arg TOKEN=${{ secrets.TOKEN }} OWNER=${{ secrets.OWNER }} CLIENT_ID=${{ secrets.CLIENT_ID }} TEST_GUILD_ID=${{ secrets.TEST_GUILD_ID }} . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Log in to registry
         # This is where you will update the personal access token to GITHUB_TOKEN
