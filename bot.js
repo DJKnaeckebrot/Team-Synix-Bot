@@ -6,6 +6,7 @@
  */
 
 // Declare constants which will be used throughout the bot.
+require("dotenv").config();
 
 const fs = require("fs");
 const {
@@ -16,7 +17,11 @@ const {
 } = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
-const { token, client_id, test_guild_id } = require("./config.json");
+
+// const { token, client_id, test_guild_id } = require("./config.json");
+const token = process.env.TOKEN;
+const client_id = process.env.CLIENT_ID;
+const test_guild_id = process.env.TEST_GUILD_ID;
 
 /**
  * From v13, specifying the intents is compulsory.

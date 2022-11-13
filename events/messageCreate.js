@@ -8,7 +8,11 @@
 // Declares constants (destructured) to be used in this file.
 
 const { Collection, ChannelType } = require("discord.js");
-const { prefix, owner } = require("../config.json");
+
+//const { prefix, owner } = require("../config.json");
+require("dotenv").config();
+const prefix = process.env.PREFIX;
+const owner = process.env.OWNER;
 
 // Prefix regex, we will use to match in mention prefix.
 
