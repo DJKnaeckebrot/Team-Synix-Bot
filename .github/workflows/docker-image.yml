@@ -5,7 +5,6 @@ on:
     # Publish `master` as Docker `latest` image.
     branches:
       - master
-      - seed
 
     # Publish `v1.2.3` tags as releases.
     tags:
@@ -21,7 +20,7 @@ env:
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
-  push:
+  build-and-push:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -54,10 +53,6 @@ jobs:
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
           
-  redeploy:
-    name: Redeploy webhook call
-    runs-on: ubuntu-latest
-    steps:
       - name: Deploy docker container webhook
         uses: joelwmale/webhook-action@master
         env:
