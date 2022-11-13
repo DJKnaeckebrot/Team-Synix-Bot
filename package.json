@@ -29,6 +29,7 @@
 		"@discordjs/rest": "^1.0.0",
 		"discord-api-types": "^0.37.7",
 		"discord.js": "^14.0.2",
+		"dotenv": "^16.0.3",
 		"jest": "^29.0.2"
 	},
 	"devDependencies": {
