@@ -6,8 +6,9 @@
  */
 
 // Deconstructing prefix from config file to use in help command
-//const { prefix } = require("./../../config.json");
+
 require("dotenv").config();
+// eslint-disable-next-line no-undef
 const prefix = process.env.PREFIX;
 
 // Deconstructing EmbedBuilder to create embeds within this command
