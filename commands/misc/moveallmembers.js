@@ -20,7 +20,9 @@ module.exports = {
 	usage: "[command name]",
 	cooldown: 5,
 
+	// eslint-disable-next-line no-unused-vars
 	execute(message, args) {
+		// eslint-disable-next-line no-unused-vars
 		const { commands } = message.client;
 
 		// If there are no args, it means it needs whole help command.

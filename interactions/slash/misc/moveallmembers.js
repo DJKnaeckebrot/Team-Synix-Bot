@@ -7,7 +7,7 @@
 
 // Deconstructed the constants we need in this file.
 
-const { EmbedBuilder, SlashCommandBuilder, PermissionsBitField } = require("discord.js");
+const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 
 /**
  * @type {import('../../../typings').SlashInteractionCommand}
@@ -29,12 +29,14 @@ module.exports = {
 		 * @type {string}
 		 * @description The "command" argument
 		 */
+		// eslint-disable-next-line no-unused-vars
 		let name = interaction.options.getString("command");
 
 		/**
 		 * @type {EmbedBuilder}
 		 * @description Help command's embed
 		 */
+		// eslint-disable-next-line no-unused-vars
 		const helpEmbed = new EmbedBuilder().setColor("Random");
 
 		// if (!interaction.member.permissions.has(PermissionsBitField.Flags.MoveMembers)) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });
@@ -57,6 +59,7 @@ module.exports = {
 		interaction.reply({ content: 'All users have been moved!', ephemeral: true });
 
 		function moveMembers(targetChannel){
+			// eslint-disable-next-line no-unused-vars
 			for (const [memberID, member] of targetChannel.members) {
 				member.voice.setChannel(sendersChannel).then(() => console.log(`Moved ${member.user.tag}.`)).catch(console.error)
 			}

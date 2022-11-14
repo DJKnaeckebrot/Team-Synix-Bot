@@ -27,12 +27,14 @@ module.exports = {
 		 * @type {string}
 		 * @description The "command" argument
 		 */
+		// eslint-disable-next-line no-unused-vars
 		let name = interaction.options.getString("command");
 
 		/**
 		 * @type {EmbedBuilder}
 		 * @description Help command's embed
 		 */
+		// eslint-disable-next-line no-unused-vars
 		const helpEmbed = new EmbedBuilder().setColor("Random");
 
         //if (!interaction.member.roles.cache.has('1014675330730033162') || !interaction.member.roles.cache.has('1004207195866546376')) return interaction.reply({ content: 'You do not have permissions to use this command!', ephemeral: false });

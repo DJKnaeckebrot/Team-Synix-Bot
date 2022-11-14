@@ -8,10 +8,6 @@
 // Deconstructing prefix from config file to use in help command
 //const { prefix } = require("../../config.json");
 require("dotenv").config();
-const prefix = process.env.PREFIX;
-
-// Deconstructing EmbedBuilder to create embeds within this command
-const { EmbedBuilder, ChannelType, Message, Client } = require("discord.js");
 
 /**
  * @type {import('../../typings').LegacyCommand}
@@ -23,7 +19,9 @@ module.exports = {
 	usage: "[command name] @MEMBER",
 	cooldown: 0,
 
+	// eslint-disable-next-line no-unused-vars
 	execute(message, args) {
+		// eslint-disable-next-line no-unused-vars
 		const { commands } = message.client;
 
 		if (!message.member.permissions.has("MANAGE_CHANNELS")) return message.reply("No Permissions!");

@@ -9,9 +9,10 @@
 
 const { Collection, ChannelType } = require("discord.js");
 
-//const { prefix, owner } = require("../config.json");
 require("dotenv").config();
+// eslint-disable-next-line no-undef
 const prefix = process.env.PREFIX;
+// eslint-disable-next-line no-undef
 const owner = process.env.OWNER;
 
 // Prefix regex, we will use to match in mention prefix.
@@ -32,6 +33,7 @@ module.exports = {
 	async execute(message) {
 		// Declares const to be used.
 
+		// eslint-disable-next-line no-unused-vars
 		const { client, guild, channel, content, author } = message;
 
 		// Checks if the bot is mentioned in the message all alone and triggers onMention trigger.
