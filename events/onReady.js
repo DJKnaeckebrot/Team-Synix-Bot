@@ -28,7 +28,7 @@ module.exports = {
 
 		client.user.setPresence({ activities: [{ name: `/help | teamsynix.com ${ version }` }], status: 'online' });
 
-		let scheduleTrainings = new cron.CronJob('00 25 11 * * *', () => {
+		let scheduleTrainings = new cron.CronJob('00 30 15 * * *', () => {
 
 			console.log('Starting cron job');
 
