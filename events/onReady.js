@@ -44,17 +44,19 @@ module.exports = {
 			if (currentDay === 1 || currentDay === 3 || currentDay === 5){
 				switch (currentDay) {
 					case 1:
-						console.log("Next is: " + getNextDayOfTheWeek("Tuesday", false));
+						var timeTu = getNextDayOfTheWeek("Thuesday", false)
+						var newFormatTimeTu = moment(timeTu).format('DD.MM.YYYY');
+						sendTrainingAnnouncement(newFormatTimeTu, guild, channel, "Dienstag");
 						break;
 					case 3:
-						console.log("Next is: " + getNextDayOfTheWeek("Thursday", false));
+						var timeTh = getNextDayOfTheWeek("Thursday", false)
+						var newFormatTimeTh = moment(timeTh).format('DD.MM.YYYY');
+						sendTrainingAnnouncement(newFormatTimeTh, guild, channel, "Donnerstag");
 						break;
 					case 5:
-						//console.log("Next is: " + getNextDayOfTheWeek("Saturday", false));
-						var time = getNextDayOfTheWeek("Saturday", false)
-						var newFormatTime = moment(time).format('DD.MM.YYYY');
-						sendTrainingAnnouncement(newFormatTime, guild, channel, "Samstag");
-						console.log(newFormatTime);
+						var timeSa = getNextDayOfTheWeek("Saturday", false)
+						var newFormatTimeSa = moment(timeSa).format('DD.MM.YYYY');
+						sendTrainingAnnouncement(newFormatTimeSa, guild, channel, "Samstag");
 						break;
 				}
 			} else return;
