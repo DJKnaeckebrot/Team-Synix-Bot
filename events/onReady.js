@@ -6,6 +6,7 @@
  */
 
 const { EmbedBuilder } = require("discord.js");
+require('log-timestamp');
 
 module.exports = {
 	name: "ready",
@@ -23,10 +24,11 @@ module.exports = {
 		const version = pjson.version;
 		const cron = require('cron');
 		const moment = require('moment');
+		
 
 		client.user.setPresence({ activities: [{ name: `/help | teamsynix.com ${ version }` }], status: 'online' });
 
-		let scheduleTrainings = new cron.CronJob('00 00 10 * * *', () => {
+		let scheduleTrainings = new cron.CronJob('00 18 10 * * *', () => {
 
 			console.log('Starting cron job');
 
@@ -39,24 +41,29 @@ module.exports = {
 
 			var currentDay = d.getDay();
 
+			var newTimeFormat;
+
 			// console.log('Current day: ' + currentDay);
 
 			if (currentDay === 1 || currentDay === 3 || currentDay === 5){
 				switch (currentDay) {
 					case 1:
 						var timeTu = getNextDayOfTheWeek("Thuesday", false)
-						var newFormatTimeTu = moment(timeTu).format('DD.MM.YYYY');
-						sendTrainingAnnouncement(newFormatTimeTu, guild, channel, "Dienstag");
+						newTimeFormat = moment(timeTu).format('DD.MM.YYYY');
+						sendTrainingAnnouncement(newTimeFormat, guild, channel, "Dienstag");
+						console.log('Started cron job with day Tuesday');
 						break;
 					case 3:
 						var timeTh = getNextDayOfTheWeek("Thursday", false)
-						var newFormatTimeTh = moment(timeTh).format('DD.MM.YYYY');
-						sendTrainingAnnouncement(newFormatTimeTh, guild, channel, "Donnerstag");
+						newTimeFormat = moment(timeTh).format('DD.MM.YYYY');
+						sendTrainingAnnouncement(newTimeFormat, guild, channel, "Donnerstag");
+						console.log('Started cron job with day Thursday');
 						break;
 					case 5:
 						var timeSa = getNextDayOfTheWeek("Saturday", false)
-						var newFormatTimeSa = moment(timeSa).format('DD.MM.YYYY');
-						sendTrainingAnnouncement(newFormatTimeSa, guild, channel, "Samstag");
+						newTimeFormat = moment(timeSa).format('DD.MM.YYYY');
+						sendTrainingAnnouncement(newTimeFormat, guild, channel, "Samstag");
+						console.log('Started cron job with day Saturday');
 						break;
 				}
 			} else return;
@@ -78,8 +85,8 @@ function getNextDayOfTheWeek(dayName, excludeToday = true, refDate = new Date())
 	return refDate;
 }
 
-function sendTrainingAnnouncement(newFormatTime, guild, channel, day) {
-	const time = newFormatTime;
+function sendTrainingAnnouncement(newTimeFormat, guild, channel, day) {
+	const time = newTimeFormat;
 
 	channel.bulkDelete('5', true);
 
@@ -89,7 +96,7 @@ function sendTrainingAnnouncement(newFormatTime, guild, channel, day) {
 			.setTitle("Am " + day + ", den " + time + " um 19 Uhr")
 			.setThumbnail('https://cdn.discordapp.com/attachments/1013366974455222272/1042907817398505532/1_red.png')
 			.setAuthor({ name: 'Training - Aktuell' })
-			.setDescription("<@784850717109256193> // <@785175565601865728> Wir bitten um zahlreiches Erscheinen. \n Das Training geht von 19 - 20:30 Uhr.")
+			.setDescription("<@784850717109256193> // <@785175565601865728> \n Wir bitten um zahlreiches Erscheinen. \n Das Training geht von 19 - 20:30 Uhr.")
 
 	channel.send({ embeds: [trainingEmbed] })
 }
