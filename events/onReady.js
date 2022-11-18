@@ -28,7 +28,7 @@ module.exports = {
 
 		client.user.setPresence({ activities: [{ name: `/help | teamsynix.com ${ version }` }], status: 'online' });
 
-		let scheduleTrainings = new cron.CronJob('00 18 10 * * *', () => {
+		let scheduleTrainings = new cron.CronJob('00 25 11 * * *', () => {
 
 			console.log('Starting cron job');
 
@@ -96,7 +96,7 @@ function sendTrainingAnnouncement(newTimeFormat, guild, channel, day) {
 			.setTitle("Am " + day + ", den " + time + " um 19 Uhr")
 			.setThumbnail('https://cdn.discordapp.com/attachments/1013366974455222272/1042907817398505532/1_red.png')
 			.setAuthor({ name: 'Training - Aktuell' })
-			.setDescription("<@784850717109256193> // <@785175565601865728> \n Wir bitten um zahlreiches Erscheinen. \n Das Training geht von 19 - 20:30 Uhr.")
+			.setDescription("<@&784850717109256193> // <@&785175565601865728> \n Wir bitten um zahlreiches Erscheinen. \n Das Training geht von 19 - 20:30 Uhr.")
 
 	channel.send({ embeds: [trainingEmbed] })
 }
