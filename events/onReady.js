@@ -86,8 +86,10 @@ function getNextDayOfTheWeek(dayName, excludeToday = true, refDate = new Date())
 }
 
 function sendTrainingAnnouncement(newTimeFormat, guild, channel, day) {
+	console.log(`Starting new sending process for ${day}'s training`);
 	const time = newTimeFormat;
 
+	console.log(`Starting delete of old messages`);
 	channel.bulkDelete('5', true);
 
 	const trainingEmbed = new EmbedBuilder()
@@ -98,5 +100,14 @@ function sendTrainingAnnouncement(newTimeFormat, guild, channel, day) {
 			.setAuthor({ name: 'Training - Aktuell' })
 			.setDescription("<@&784850717109256193> // <@&785175565601865728> \n Wir bitten um zahlreiches Erscheinen. \n Das Training geht von 19 - 20:30 Uhr.")
 
-	channel.send({ embeds: [trainingEmbed] })
+	console.log(`Starting sending of new message after sleep`);
+	Sleep(3000).then(() => {
+		console.log(`Sending new message`);
+		channel.send({ embeds: [trainingEmbed] });
+		console.log(`Finished sending process for ${day}'s training`);
+	});
+}
+
+function Sleep(milliseconds) {
+	return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
