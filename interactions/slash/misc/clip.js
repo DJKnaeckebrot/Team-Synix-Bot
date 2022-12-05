@@ -22,7 +22,7 @@ module.exports = {
 		)
 		.addSubcommand(subcommand => subcommand.setDescription("Close the Clip of the week channel").setName("close").addChannelOption(option => option.setName('clipchannel').setDescription('Clip channel')))
 		.addSubcommand(subcommand => subcommand.setDescription("Open the Clip of the week channel").setName("open").addChannelOption(option => option.setName('clipchannel').setDescription('Clip channel')))
-		.addSubcommand(subcommand => subcommand.setDescription("Announce the Clip of the week winner").setName("winner").addChannelOption(option => option.setName('clipchannel').setDescription('Clip channel')).addUserOption(option => option.setName('winner').setDescription('Winner'))),
+		.addSubcommand(subcommand => subcommand.setDescription("Announce the Clip of the week winner").setName("winner").addChannelOption(option => option.setName('clipchannel').setDescription('Clip channel').setRequired(true)).addUserOption(option => option.setName('winner').setDescription('Winner').setRequired(true))),
 
 	async execute(interaction) {
 		
