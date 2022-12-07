@@ -1,4 +1,7 @@
 FROM node:latest
+ENV NEW_RELIC_NO_CONFIG_FILE=true
+ENV NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true \
+NEW_RELIC_LOG=stdout
 
 # Create the directory!
 RUN mkdir -p /usr/src/bot
