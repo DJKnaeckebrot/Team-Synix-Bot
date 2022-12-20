@@ -28,7 +28,7 @@ module.exports = {
 
 		client.user.setPresence({ activities: [{ name: `/help | teamsynix.com ${ version }` }], status: 'online' });
 
-		let scheduleTrainings = new cron.CronJob('00 30 16 * * *', () => {
+		let scheduleTrainings = new cron.CronJob('00 00 14 * * *', () => {
 
 			console.log('Starting cron job');
 
@@ -45,21 +45,21 @@ module.exports = {
 
 			// console.log('Current day: ' + currentDay);
 
-			if (currentDay === 1 || currentDay === 3 || currentDay === 5){
+			if (currentDay === 2 || currentDay === 4 || currentDay === 6){
 				switch (currentDay) {
-					case 1:
+					case 2:
 						var timeTu = getNextDayOfTheWeek("Tuesday", false)
 						newTimeFormat = moment(timeTu).format('DD.MM.YYYY');
 						sendTrainingAnnouncement(newTimeFormat, guild, channel, "Dienstag");
 						console.log('Started cron job with day Tuesday');
 						break;
-					case 3:
+					case 4:
 						var timeTh = getNextDayOfTheWeek("Thursday", false)
 						newTimeFormat = moment(timeTh).format('DD.MM.YYYY');
 						sendTrainingAnnouncement(newTimeFormat, guild, channel, "Donnerstag");
 						console.log('Started cron job with day Thursday');
 						break;
-					case 5:
+					case 6:
 						var timeSa = getNextDayOfTheWeek("Saturday", false)
 						newTimeFormat = moment(timeSa).format('DD.MM.YYYY');
 						sendTrainingAnnouncement(newTimeFormat, guild, channel, "Samstag");
