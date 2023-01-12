@@ -1,6 +1,6 @@
 {
 	"name": "synix-discord-bot",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "Team Synix Discord Bot",
 	"funding": "https://teamsynix.com",
 	"types": "./typings.d.ts",
