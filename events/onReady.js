@@ -98,7 +98,7 @@ function sendTrainingAnnouncement(newTimeFormat, guild, channel, day) {
 			.setTitle("Am " + day + ", den " + time + " um 19 Uhr")
 			.setThumbnail('https://cdn.discordapp.com/attachments/1013366974455222272/1042907817398505532/1_red.png')
 			.setAuthor({ name: 'Training - Aktuell' })
-			.setDescription("<@&784850717109256193> // <@&785175565601865728> \n Wir bitten um zahlreiches Erscheinen. \n Das Training geht von 19 - 20:30 Uhr.")
+			.setDescription("Wir bitten um zahlreiches Erscheinen. \n Das Training geht von 19 - 20:30 Uhr.")
 
 	console.log(`Starting sending of new message after sleep`);
 	Sleep(3000).then(() => {
