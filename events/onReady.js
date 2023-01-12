@@ -103,7 +103,7 @@ function sendTrainingAnnouncement(newTimeFormat, guild, channel, day) {
 	console.log(`Starting sending of new message after sleep`);
 	Sleep(3000).then(() => {
 		console.log(`Sending new message`);
-		channel.send({ embeds: [trainingEmbed] });
+		channel.send({ content: `<@&784850717109256193>  <@&785175565601865728>`,embeds: [trainingEmbed] });
 		console.log(`Finished sending process for ${day}'s training`);
 	});
 }
