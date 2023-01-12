@@ -33,8 +33,7 @@
 		"dotenv": "^16.0.3",
 		"jest": "^29.3.1",
 		"log-timestamp": "^0.3.0",
-		"moment": "^2.29.4",
-		"newrelic": "latest"
+		"moment": "^2.29.4"
 	},
 	"devDependencies": {
 		"eslint": "^8.23.0"

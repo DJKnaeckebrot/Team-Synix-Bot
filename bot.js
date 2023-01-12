@@ -7,7 +7,6 @@
 
 // Declare constants which will be used throughout the bot.
 require("dotenv").config();
-require('newrelic');
 
 const fs = require("fs");
 const {
