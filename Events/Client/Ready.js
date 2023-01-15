@@ -2,6 +2,8 @@ const { Client } = require("discord.js")
 const ms = require("ms")
 const mongoose = require("mongoose")
 const mongodbURL = process.env.MONGODBURL
+const pjson = require('../../package.json');
+const version = pjson.version;
 
 module.exports = {
     name: "ready",
@@ -14,28 +16,8 @@ module.exports = {
         const { user, ws } = client
 
         console.log(`${user.tag} is now online!`)
-        let x = 1
 
-        setInterval(() => {
-
-            const ping = ws.ping
-
-            const text = ["Synix an die Macht!", "Was denn hier los", "Wer das liest ist doof hihi", "Mama guck mal ich bin im Fernsehen!"]
-
-            // console.log("Text Länge : "+ text.length)
-
-            if (x === text.length) {
-                x = 0;
-            }
-
-            user.setActivity({
-                name: text[x],
-                type: 3,
-            })
-
-            x ++;
-
-        }, ms("5s"))
+        client.user.setPresence({ activities: [{ name: `/help | teamsynix.com ${ version }` }], status: 'online' });
 
         if (!mongodbURL) return
 
