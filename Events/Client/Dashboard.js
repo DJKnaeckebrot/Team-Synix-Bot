@@ -4,6 +4,7 @@ const SoftUI = require('dbd-soft-ui');
 let DBD = require('discord-dashboard');
 const supportDB = require('../../Structures/Schemas/SupportRoom');
 const featureDB = require('../../Structures/Schemas/Features');
+const trainingsembedDB = require('../../Structures/Schemas/TrainingsEmbed');
 
 module.exports = {
     name: "ready",
@@ -240,7 +241,7 @@ module.exports = {
 
                 {
                     categoryId: "support",
-                    categoryTitle: "Support",
+                    categoryName: "Support",
                     categoryDescription: "Support Settings",
                     categoryImageURL: "https://teamsynix.com/wp-content/uploads/2022/08/logo_smooth.png",
                     refreshOnSave: true,
@@ -249,6 +250,15 @@ module.exports = {
                     getActualSet: async ({ guild, client }) => {
                         let feature = await featureDB.findOne({ GuildID: guild.id });
                         let support = await supportDB.findOne({ GuildID: guild.id });
+
+                        if (!feature) {
+                            let feature = new featureDB({
+                                GuildID: guild.id,
+                                TrainingAnnouncements: false
+                            });
+
+                            await feature.save();
+                        }
 
                         if (!support) {
                             let support = new supportDB({
@@ -393,7 +403,93 @@ module.exports = {
                             }
                         },
                     ]
-                }
+                },
+                {
+                    categoryId: "trainingsembed",
+                    categoryName: "Trainingsembed",
+                    categoryDescription: "Hier kannst das Trainingsembed einstellen.",
+                    categoryImageURL: "https://teamsynix.com/wp-content/uploads/2022/08/logo_smooth.png",
+                    toggleable: true,
+                    refreshOnSave: true,
+                    getActualSet: async ({ guild, client }) => {
+                        let feature = await featureDB.findOne({ GuildID: guild.id });
+
+                        if(feature) return feature.TrainingAnnouncements;
+                        else return false;
+                    },
+                    setNew: async ({ guild, client, newSettings }) => {
+                        let feature = await featureDB.findOne({ GuildID: guild.id });
+
+                        if(feature) {
+                            feature.TrainingAnnouncements = newSettings;
+                            await feature.save();
+                        } else {
+                            await featureDB.create({
+                                GuildID: guild.id,
+                                TrainingAnnouncements: newSettings
+                            });
+                        }
+                    },
+                    categoryOptionsList: [
+                        {
+                            optionId: "trainingembedmessage",
+                            optionName: "Embed Nachricht",
+                            optionDescription: "Stelle ein welche Nachricht für das Trainingsembed verwendet werden soll.",
+                            optionType: DBD.formTypes.embedBuilder({
+                                username: user.username,
+                                avatarURL: user.avatarURL(),
+                                defaultJson: {
+                                    content: "Welcome",
+                                    embed: {
+                                        description: "Wir bitten um zahlreiches Erscheinen. \n Das Training geht von 19 - 20:30 Uhr.",
+                                        author: {
+                                            name: "Training - Aktuell",
+                                            url: "https://teamsynix.com",
+                                            icon_url: "https://teamsynix.com/wp-content/uploads/2022/11/1_red_2.png"
+                                        },
+                                        thumbnail: {
+                                            url: "https://cdn.discordapp.com/attachments/1013366974455222272/1042907817398505532/1_red.png"
+                                        },
+                                        footer: {
+                                            text: "teamsynix | powered by zeenbot.xyz",
+                                            icon_url: "https://cdn.discordapp.com/attachments/1041329286969294858/1058348553392627723/z-white.png"
+                                        },
+                                    }
+                                }
+                            }),
+                            getActualSet: async ({ guild }) => {
+                                let data = await trainingsembedDB.findOne({ GuildID: guild.id }).catch(err => { })
+                                if (data) return data.Embed
+                                else return null
+                            },
+                            setNew: async ({ guild, newData }) => {
+
+                                let data = await trainingsembedDB.findOne({ GuildID: guild.id }).catch(err => { })
+
+                                if (!newData) newData = false
+
+                                if (!data) {
+
+                                    data = new trainingsembedDB({
+                                        GuildID: guild.id,
+                                        Embed: newData,
+                                    })
+
+                                    await data.save()
+
+                                } else {
+
+                                    data.Embed = newData
+                                    await data.save()
+
+                                }
+
+                                return
+
+                            }
+                        },
+                    ]
+                },
             ]
 
         })
