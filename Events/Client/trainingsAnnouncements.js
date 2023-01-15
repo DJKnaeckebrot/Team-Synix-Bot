@@ -5,6 +5,7 @@ const mongodbURL = process.env.MONGODBURL
 const cron = require('cron');
 const moment = require('moment');
 const trainingsEmbedDB = require("../../Structures/Schemas/TrainingsEmbed");
+const featuresDB = require("../../Structures/Schemas/Features");
 
 
 module.exports = {
@@ -16,7 +17,11 @@ module.exports = {
      */
     async execute(client) {
 
-        const { user, ws } = client
+        const { user, ws, guild } = client
+
+        const featuresEnabled = await featuresDB.findOne({ GuildID: "1040898204994117722" });
+
+        if (featuresEnabled.TrainingAnnouncements === false) return
 
         console.log(`Setting up cron jobs for training announcements`);
 
