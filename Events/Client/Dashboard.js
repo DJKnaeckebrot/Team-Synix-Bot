@@ -254,7 +254,8 @@ module.exports = {
                         if (!feature) {
                             let feature = new featureDB({
                                 GuildID: guild.id,
-                                TrainingAnnouncements: false
+                                SupportRooms: true,
+                                TrainingAnnouncements: true,
                             });
 
                             await feature.save();
@@ -275,17 +276,22 @@ module.exports = {
                         if(feature) return feature.SupportRoom;
                         else return false;
                     },
-                    setNew: async ({ guild, client, newSettings }) => {
+                    setNew: async ({ guild, client, newData }) => {
                         let feature = await featureDB.findOne({ GuildID: guild.id });
 
+                        if (!newData) newData = false;
+
                         if(feature) {
-                            feature.SupportRoom = newSettings;
+                            feature.SupportRoom = newData;
                             await feature.save();
                         } else {
-                            await featuresDB.create({
+                            feature = new featureDB({
                                 GuildID: guild.id,
-                                SupportRoom: newSettings
+                                SupportRoom: newData,
                             });
+
+                            await feature.save();
+
                         }
                     },
 
