@@ -12,7 +12,8 @@ const GeneralLogsDB = require("../Structures/Schemas/LogsChannel")
 const { DisTube } = require('distube');
 const { SoundCloudPlugin } = require('@distube/soundcloud');
 const { SpotifyPlugin } = require('@distube/spotify');
-const supportDB = require('./Schemas/SupportRoom')
+const supportDB = require('../Structures/Schemas/SupportRoom')
+const featureDB = require('../Structures/Schemas/Features')
 
 const client = new Client({
     intents: 131071,
@@ -77,6 +78,10 @@ Handlers.forEach(handler => {
 })
 
 client.on("voiceStateUpdate", async (oldUser, newUser) => {
+    let features = await featureDB.findOne({ GuildID: newUser.guild.id })
+    if (!features) return;
+    if (features.SupportRoom === false) return;
+
     if (newUser.member.user.bot) return
     if (newUser.member.user.bot) return
 
