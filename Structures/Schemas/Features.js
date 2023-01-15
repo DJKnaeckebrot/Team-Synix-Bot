@@ -9,5 +9,6 @@ module.exports = model("features", new Schema({
     AutoMod: { type: Boolean, default: false },
     VoiceHubs: { type: Boolean, default: false },
     SupportRoom: { type: Boolean, default: false },
+    TrainingAnnouncements: { type: Boolean, default: true },
 
 }))
