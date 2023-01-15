@@ -100,19 +100,16 @@ client.on("voiceStateUpdate", async (oldUser, newUser) => {
 
         const channel = await newUser.guild.channels.cache.get(data.PingChannel);
 
-        let pings
+        let pings = ""
 
         for (const id of data.PingRoles) {
             pings += `<@&${id}>`
         }
 
-        if (!data.PingRoles) return channel.send({ embeds: [embed] })
+        if (data.PingRoleStatus) {
+            channel.send({ content: pings, embeds: [embed] }); }
         else {
-            if (data.PingRoleStatus) {
-                channel.send({ content: pings, embeds: [embed] }); }
-            else {
-                channel.send({ embeds: [embed] })
-            }
+            channel.send({ embeds: [embed] })
         }
 
     } else if (data.ChannelID.includes(oldUser.channel.id) && newUser.channel === null) {
