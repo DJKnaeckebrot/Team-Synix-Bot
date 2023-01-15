@@ -25,7 +25,7 @@ module.exports = {
 
         console.log(`Setting up cron jobs for training announcements`);
 
-        let scheduleTrainings = new cron.CronJob('00 36 12 * * *', () => {
+        let scheduleTrainings = new cron.CronJob('00 00 15 * * *', () => {
 
             console.log('Starting cron job');
 
@@ -44,7 +44,7 @@ module.exports = {
 
             // console.log('Current day: ' + currentDay);
 
-            if (currentDay === 2 || currentDay === 4 || currentDay === 0){
+            if (currentDay === 2 || currentDay === 4 || currentDay === 6){
                 switch (currentDay) {
                     case 2:
                         var timeTu = getNextDayOfTheWeek("Tuesday", false)
@@ -58,7 +58,7 @@ module.exports = {
                         sendTrainingAnnouncement(newTimeFormat, guild, channel, "Donnerstag");
                         console.log('Started cron job with day Thursday');
                         break;
-                    case 0:
+                    case 6:
                         var timeSa = getNextDayOfTheWeek("Saturday", false)
                         newTimeFormat = moment(timeSa).format('DD.MM.YYYY');
                         sendTrainingAnnouncement(newTimeFormat, guild, channel, "Samstag");
