@@ -17,7 +17,7 @@ module.exports = {
 
         console.log(`${user.tag} is now online!`)
 
-        client.user.setPresence({ activities: [{ name: `/help | teamsynix.com ${ version }` }], status: 'online' });
+        client.user.setPresence({ activities: [{ name: `teamsynix.com v${ version }` }], status: 'online' });
 
         if (!mongodbURL) return
 
