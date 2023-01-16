@@ -5,6 +5,7 @@ let DBD = require('discord-dashboard');
 const supportDB = require('../../Structures/Schemas/SupportRoom');
 const featureDB = require('../../Structures/Schemas/Features');
 const trainingsembedDB = require('../../Structures/Schemas/TrainingsEmbed');
+const problemDB = require('../../Structures/Schemas/ProblemKinder');
 
 module.exports = {
     name: "ready",
@@ -407,6 +408,45 @@ module.exports = {
 
                                 return
                             }
+                        },
+                    ]
+                },
+                {
+                    categoryId: "problemkinder",
+                    categoryName: "Problemkinder",
+                    categoryDescription: "SPIKER NICHT KLAUEN! KÖNNT IHR MIR HELFEN AN DEN ZAUM ZU KOMMEN?",
+                    categoryOptionsList: [
+                        {
+                            optionId: "problemkinder",
+                            optionTitle: "Problemkinder",
+                            optionDescription: "Stelle die Problemkinder ein. bzw aus hehehehe",
+                            optionType: DBD.formTypes.switch(false),
+                            getActualSet: async ({guild,user}) => {
+                                let data = await problemDB.findOne({  GuildID: guild.id });
+                                if(data) return data.Status;
+                                else return false;
+                            },
+                            setNew: async ({guild,user,newData}) => {
+                                let data = await problemDB.findOne({  GuildID: guild.id });
+
+                                if (!newData) newData = false;
+
+                                if(!data) {
+                                    data = new problemDB({
+                                        GuildID: guild.id,
+                                        Status: newData,
+                                        ProblemKinder: []
+                                    });
+
+                                    data.save();
+                                } else {
+                                    data.Status = newData;
+                                    data.save();
+                                }
+
+                                return
+                            },
+
                         },
                     ]
                 },

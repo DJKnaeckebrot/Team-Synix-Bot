@@ -14,6 +14,7 @@ const { SoundCloudPlugin } = require('@distube/soundcloud');
 const { SpotifyPlugin } = require('@distube/spotify');
 const supportDB = require('../Structures/Schemas/SupportRoom')
 const featureDB = require('../Structures/Schemas/Features')
+const problemDB = require('../Structures/Schemas/ProblemKinder')
 
 const client = new Client({
     intents: 131071,
@@ -77,6 +78,7 @@ Handlers.forEach(handler => {
 
 })
 
+// Support Room Notification
 client.on("voiceStateUpdate", async (oldUser, newUser) => {
     let features = await featureDB.findOne({ GuildID: newUser.guild.id })
     if (!features) return;
@@ -117,6 +119,54 @@ client.on("voiceStateUpdate", async (oldUser, newUser) => {
 
     }
 });
+
+
+// Kinder
+
+client.on ("voiceStateUpdate", async (oldState, newState) => {
+    let probleme = await problemDB.findOne({ GuildID: newState.guild.id })
+
+    let newUserChannel = newState.channelId
+    let oldUserChannel = oldState.channelId
+
+    // if (newState.channelId != "958115138609770506" || newState.channelId != "822100814591164447") return
+
+    if (!probleme) {
+        console.log("No Problem Kinder")
+        return;
+    }
+
+    if (probleme.Status === false) {
+        console.log("Features disabled")
+        return;
+    }
+
+    let problemKinder = probleme.ProblemKinder
+
+    let joinedUser = newState.member.user.tag
+
+    if (!problemKinder.includes(newState.member.id)) {
+        return;
+    }
+
+    if(problemKinder.includes(newState.member.id)) {
+        // Get the members in the voice channel
+        let channelMembers = newState.guild.channels.cache.get(newState.channelId).members;
+        // Check if any members from the array are in the voice channel
+        for(let [memberID, member] of channelMembers) {
+            if(problemKinder.includes(memberID) && memberID !== newState.member.id) {
+                console.log(`${member.user.tag} is also in the voice channel!`);
+                newState.member.timeout(60000, `Du bist den selben Channel gejoint wie ${member.user.tag}`)
+                    .then(console.log)
+                    .catch(console.error);
+                console.log("Timeout user: " + newState.member)
+                return;
+            }
+        }
+    }
+
+});
+
 
 module.exports = client
 
