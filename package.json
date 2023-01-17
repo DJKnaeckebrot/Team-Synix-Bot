@@ -1,6 +1,6 @@
 {
   "name": "Team Synix Bot",
-  "version": "2.0.0-beta1",
+  "version": "2.0.0-beta2",
   "description": "",
   "main": "./Structures/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "canvacord": "^5.4.8",
     "captcha-canvas": "^3.2.1",
     "cron": "^2.2.0",
-    "dbd-soft-ui": "^1.5.59-beta.1",
+    "dbd-soft-ui": "^1.5.60-beta.1",
     "discord-canvas": "^1.5.2",
     "discord-dashboard": "2.3.6",
     "discord-giveaways": "^6.0.1",
