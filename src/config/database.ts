@@ -12,7 +12,7 @@ export const databaseConfig: DatabaseConfigType = {
     }
 }
 
-export const databaseType = 'better-sqlite' as const // 'better-sqlite' | 'sqlite' | 'postgres' | 'mysql' | 'mariadb' | 'mongo'
+export const databaseType = 'mysql' as const // 'better-sqlite' | 'sqlite' | 'postgres' | 'mysql' | 'mariadb' | 'mongo'
 
 const envMikroORMConfig: { production: Options, development?: Options } = {
 
@@ -21,8 +21,8 @@ const envMikroORMConfig: { production: Options, development?: Options } = {
         /**
          * SQLite
          */
-        type: databaseType,
-        dbName: `${databaseConfig.path}db.sqlite`,
+        //type: databaseType,
+        //dbName: `${databaseConfig.path}db.sqlite`,
 
         /**
          * MongoDB
@@ -43,12 +43,12 @@ const envMikroORMConfig: { production: Options, development?: Options } = {
         /**
          * MySQL
          */
-        // type: databaseType,
-        // dbName: process.env['DATABASE_NAME'],
-        // host: process.env['DATABASE_HOST'],
-        // port: Number(process.env['DATABASE_PORT']),
-        // user: process.env['DATABASE_USER'],
-        // password: process.env['DATABASE_PASSWORD'],
+        type: databaseType,
+        dbName: process.env['DATABASE_NAME'],
+        host: process.env['DATABASE_HOST'],
+        port: Number(process.env['DATABASE_PORT']),
+        user: process.env['DATABASE_USER'],
+        password: process.env['DATABASE_PASSWORD'],
 
         /**
          * MariaDB

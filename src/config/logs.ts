@@ -10,7 +10,7 @@ export const logsConfig: LogsConfigType = {
     interaction: {
         file: true,
         console: true,
-        channel: null,
+        channel: "1040898264616153149",
 
         // exclude some interactions types
         exclude: [
