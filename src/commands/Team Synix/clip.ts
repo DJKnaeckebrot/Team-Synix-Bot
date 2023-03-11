@@ -1,10 +1,11 @@
 import { Category } from "@discordx/utilities"
 import {Discord, Slash, SlashOption} from "@decorators";
-import {SlashGroup, Client} from "discordx";
-import {ApplicationCommandOptionType, Channel, CommandInteraction, TextChannel, User} from "discord.js";
+import {SlashGroup} from "discordx";
+import { Guard, UserPermissions } from "@guards"
+import {ApplicationCommandOptionType, CommandInteraction, TextChannel, User} from "discord.js";
 
 @Discord()
-@Category('General')
+@Category('Team Synix')
 @SlashGroup({ description: "Clip der Woche", name: "clip" })
 @SlashGroup("clip")
 export default class ClipCommand {
@@ -17,7 +18,6 @@ export default class ClipCommand {
             type: ApplicationCommandOptionType.Channel,
         }) clipChannel: TextChannel,
         interaction: CommandInteraction,
-        client: Client,
     ) {
         //console.log(clipChannel)
         await clipChannel.bulkDelete(100, true);
@@ -48,11 +48,10 @@ export default class ClipCommand {
             type: ApplicationCommandOptionType.Channel,
         }) clipChannel: TextChannel,
         interaction: CommandInteraction,
-        client: Client,
     ) {
 
-        //const roleId = '784774303714508820';
-        const roleId = '1061285791751475260';
+        const roleId = '784774303714508820';
+        //const roleId = '1061285791751475260';
         const role = clipChannel.guild.roles.cache.get(roleId);
         if (role) {
             await clipChannel.permissionOverwrites.edit(role, { SendMessages: true });
@@ -83,7 +82,6 @@ export default class ClipCommand {
             type: ApplicationCommandOptionType.User,
         }) cdwWinner: User,
         interaction: CommandInteraction,
-        client: Client,
     ) {
         clipChannel.send(`**Liebe** <@&784774303714508820>,\nhiermit geben wir den Gewinner von Clip der Woche für diese Woche bekannt.\n \n**Gewinner:** <@${cdwWinner.id}>\n**Preis:** 30.000 Gamble-Credits \n \n Wir bedanken uns für eure zahlreichen Einreichungen, viel Glück beim nächsten Mal 🙂 \n \n**Liebe Grüße** \n- <@&1004207195866546376>`)
 

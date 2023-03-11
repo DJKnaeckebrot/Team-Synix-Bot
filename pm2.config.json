@@ -1,7 +1,7 @@
 {
     "apps": [
         {
-            "name": "My Discord Bot",
+            "name": "Team Synix Bot",
             "script": "npm",
             "args" : "run build:start"
         }
