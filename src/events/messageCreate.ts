@@ -5,6 +5,7 @@ import { Maintenance } from "@guards"
 import { executeEvalFromMessage, isDev } from "@utils/functions"
 
 import { generalConfig } from "@config"
+import {EmbedBuilder, PermissionsBitField} from "discord.js";
 
 @Discord()
 export default class MessageCreateEvent {
@@ -27,6 +28,20 @@ export default class MessageCreateEvent {
             )
         ) {
             executeEvalFromMessage(message)
+        }
+
+        // check is message is in a allowed channel
+        if (message.channelId == "1040983841487212675") {
+            const notAllowedEmbed = new EmbedBuilder()
+                .setDescription(`🚮 This channel is a command only channel!`)
+                .setColor('Red')
+
+            message.channel
+                .send({embeds: [notAllowedEmbed], content: `${message.author}`})
+                .then((mg) => setTimeout(mg.delete.bind(mg), 10000));
+            await message.delete();
+
+            return;
         }
 
         await client.executeCommand(message, { caseSensitive: false })
